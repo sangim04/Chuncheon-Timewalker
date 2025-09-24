@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -17,24 +17,24 @@ public class StageManager : MonoBehaviour
     public List<XRSocketInteractor> stage3Sockets = new List<XRSocketInteractor>(8);
 
     private int currentStage = 0; // 0..2
-    private readonly Dictionary<XRSocketInteractor, bool> correctPlaced = new(); // ¼ÒÄÏº° Á¤´ä ¿©ºÎ
+    private readonly Dictionary<XRSocketInteractor, bool> correctPlaced = new(); // ì†Œì¼“ë³„ ì •ë‹µ ì—¬ë¶€
 
     private void Awake()
     {
-        // ¸®½º³Ê ¿¬°á + ÃÊ±â »óÅÂ ¼¼ÆÃ
+        // ë¦¬ìŠ¤ë„ˆ ì—°ê²° + ì´ˆê¸° ìƒíƒœ ì„¸íŒ…
         WireStage(stage1Sockets);
         WireStage(stage2Sockets);
         WireStage(stage3Sockets);
 
-        // Ã³À½¿¡´Â 1´Ü°è¸¸ È°¼º
+        // ì²˜ìŒì—ëŠ” 1ë‹¨ê³„ë§Œ í™œì„±
         SetStageActive(0, true);
         SetStageActive(1, false);
         SetStageActive(2, false);
 
-        // °³¼ö Ã¼Å©(±ÇÀå: 4, 8, 8)
-        if (stage1Sockets.Count != 4) Debug.LogWarning($"[SocketStageManager] Stage1 ¼ÒÄÏ °³¼ö {stage1Sockets.Count}°³ (±ÇÀå 4°³)");
-        if (stage2Sockets.Count != 8) Debug.LogWarning($"[SocketStageManager] Stage2 ¼ÒÄÏ °³¼ö {stage2Sockets.Count}°³ (±ÇÀå 8°³)");
-        if (stage3Sockets.Count != 8) Debug.LogWarning($"[SocketStageManager] Stage3 ¼ÒÄÏ °³¼ö {stage3Sockets.Count}°³ (±ÇÀå 8°³)");
+        // ê°œìˆ˜ ì²´í¬(ê¶Œì¥: 4, 8, 8)
+        if (stage1Sockets.Count != 4) Debug.LogWarning($"[SocketStageManager] Stage1 ì†Œì¼“ ê°œìˆ˜ {stage1Sockets.Count}ê°œ (ê¶Œì¥ 4ê°œ)");
+        if (stage2Sockets.Count != 8) Debug.LogWarning($"[SocketStageManager] Stage2 ì†Œì¼“ ê°œìˆ˜ {stage2Sockets.Count}ê°œ (ê¶Œì¥ 8ê°œ)");
+        if (stage3Sockets.Count != 8) Debug.LogWarning($"[SocketStageManager] Stage3 ì†Œì¼“ ê°œìˆ˜ {stage3Sockets.Count}ê°œ (ê¶Œì¥ 8ê°œ)");
     }
 
     private void OnDestroy()
@@ -51,7 +51,7 @@ public class StageManager : MonoBehaviour
             if (!s) continue;
             correctPlaced[s] = false;
 
-            // ·ÎÄÃ Ä¸Ã³·Î ¾î¶² ¼ÒÄÏ ÀÌº¥Æ®ÀÎÁö ¸íÈ®È÷
+            // ë¡œì»¬ ìº¡ì²˜ë¡œ ì–´ë–¤ ì†Œì¼“ ì´ë²¤íŠ¸ì¸ì§€ ëª…í™•íˆ
             var socketRef = s;
             socketRef.selectEntered.AddListener(args => OnSelectEntered(socketRef, args));
             socketRef.selectExited.AddListener(args => OnSelectExited(socketRef, args));
@@ -86,7 +86,8 @@ public class StageManager : MonoBehaviour
 
     private void Start()
     {
-        lockedMask = InteractionLayerMask.GetMask("Locked"); // ¿¡µğÅÍ¿¡¼­ ¸¸µç ÀÌ¸§°ú µ¿ÀÏÇØ¾ß ÇÔ
+        lockedMask = InteractionLayerMask.GetMask("Locked"); // ì—ë””í„°ì—ì„œ ë§Œë“  ì´ë¦„ê³¼ ë™ì¼í•´ì•¼ í•¨
+        //ë ˆì´ì–´ ì„¤ì • :  ì† - > Lockedí•´ì œ / ì†Œì¼“ -> Default & Locked / ìŒì‹ -> Default
     }
 
     private void SetStageActive(int stageIndex, bool active)
@@ -98,11 +99,11 @@ public class StageManager : MonoBehaviour
         {
             if (!socket) continue;
 
-            // ¼ÒÄÏÀº Ç×»ó ÄÑµĞ´Ù (ÀÌÁ¦ ºñÈ°¼ºÈ­ÇÏÁö ¾ÊÀ½)
+            // ì†Œì¼“ì€ í•­ìƒ ì¼œë‘”ë‹¤ (ì´ì œ ë¹„í™œì„±í™”í•˜ì§€ ì•ŠìŒ)
             socket.enabled = true;
             socket.gameObject.SetActive(true);
 
-            // ÇöÀç ¼ÒÄÏ¿¡ ¾ÆÀÌÅÛÀÌ ²ÈÇô ÀÖ´Ù¸é
+            // í˜„ì¬ ì†Œì¼“ì— ì•„ì´í…œì´ ê½‚í˜€ ìˆë‹¤ë©´
             if (socket.hasSelection)
             {
                 var interactable = socket.firstInteractableSelected as IXRSelectInteractable;
@@ -113,12 +114,12 @@ public class StageManager : MonoBehaviour
                     {
                         if (active)
                         {
-                            // ´Ü°è È°¼ºÈ­: ÇÊ¿ä ½Ã Àá±İ ÇØÁ¦ (º¹¿ø)
+                            // ë‹¨ê³„ í™œì„±í™”: í•„ìš” ì‹œ ì ê¸ˆ í•´ì œ (ë³µì›)
                             UnlockGrab(grab);
                         }
                         else
                         {
-                            // ´Ü°è ºñÈ°¼ºÈ­(¿Ï·áµÊ): ¾ÆÀÌÅÛÀ» Àá°¡¼­ ¼ÕÀ¸·Î ¸ø »©°Ô
+                            // ë‹¨ê³„ ë¹„í™œì„±í™”(ì™„ë£Œë¨): ì•„ì´í…œì„ ì ê°€ì„œ ì†ìœ¼ë¡œ ëª» ë¹¼ê²Œ
                             LockGrab(grab);
                         }
                     }
@@ -130,11 +131,11 @@ public class StageManager : MonoBehaviour
     private void LockGrab(XRGrabInteractable grab)
     {
         if (!savedMasks.ContainsKey(grab))
-            savedMasks[grab] = grab.interactionLayers; // ¿ø·¡ ¸¶½ºÅ© ÀúÀå
+            savedMasks[grab] = grab.interactionLayers; // ì›ë˜ ë§ˆìŠ¤í¬ ì €ì¥
 
         grab.interactionLayers = lockedMask;
 
-        // (¼±ÅÃ) ¹°¸® ¾ÈÁ¤È­
+        // (ì„ íƒ) ë¬¼ë¦¬ ì•ˆì •í™”
         var rb = grab.GetComponent<Rigidbody>();
         if (rb) rb.isKinematic = true;
     }
@@ -173,7 +174,7 @@ public class StageManager : MonoBehaviour
     {
         if (!IsSocketInCurrentStage(socket)) return;
 
-        // ºüÁö¸é ÇØ´ç ¼ÒÄÏÀº ¹Ì¿Ï·á Ã³¸®
+        // ë¹ ì§€ë©´ í•´ë‹¹ ì†Œì¼“ì€ ë¯¸ì™„ë£Œ ì²˜ë¦¬
         correctPlaced[socket] = false;
     }
 
@@ -182,29 +183,29 @@ public class StageManager : MonoBehaviour
         var curList = GetStageList(currentStage);
         if (curList == null || curList.Count == 0) return;
 
-        // ÇöÀç ´Ü°èÀÇ ¸ğµç ¼ÒÄÏÀÌ Á¤´ä »óÅÂÀÎÁö È®ÀÎ
+        // í˜„ì¬ ë‹¨ê³„ì˜ ëª¨ë“  ì†Œì¼“ì´ ì •ë‹µ ìƒíƒœì¸ì§€ í™•ì¸
         bool allCorrect = curList.All(s => s && correctPlaced.TryGetValue(s, out var ok) && ok);
 
         if (!allCorrect) return;
 
         if (currentStage == 0)
         {
-            Debug.Log("4°³¿¡ ¿Ã¹Ù¸£°Ô µé¾î°¬½À´Ï´Ù. ´ÙÀ½ ´Ü°è¸¦ ÁøÇàÇÕ´Ï´Ù.");
+            Debug.Log("4ê°œì— ì˜¬ë°”ë¥´ê²Œ ë“¤ì–´ê°”ìŠµë‹ˆë‹¤. ë‹¤ìŒ ë‹¨ê³„ë¥¼ ì§„í–‰í•©ë‹ˆë‹¤.");
             SetStageActive(0, false);
             currentStage = 1;
             SetStageActive(1, true);
         }
         else if (currentStage == 1)
         {
-            Debug.Log("8°³¿¡ ¿Ã¹Ù¸£°Ô µé¾î°¬½À´Ï´Ù. ´ÙÀ½ ´Ü°è¸¦ ÁøÇàÇÕ´Ï´Ù.");
+            Debug.Log("8ê°œì— ì˜¬ë°”ë¥´ê²Œ ë“¤ì–´ê°”ìŠµë‹ˆë‹¤. ë‹¤ìŒ ë‹¨ê³„ë¥¼ ì§„í–‰í•©ë‹ˆë‹¤.");
             SetStageActive(1, false);
             currentStage = 2;
             SetStageActive(2, true);
         }
         else if (currentStage == 2)
         {
-            Debug.Log("ÀßÇß½À´Ï´Ù!");
-            //¿©±â¼­ ÈÄ¼Ó ·ÎÁ÷(¿¬Ãâ, ¾À ÀüÈ¯ µî) È£Ãâ
+            Debug.Log("ì˜í–ˆìŠµë‹ˆë‹¤!");
+            //ì—¬ê¸°ì„œ í›„ì† ë¡œì§(ì—°ì¶œ, ì”¬ ì „í™˜ ë“±) í˜¸ì¶œ
         }
     }
 }

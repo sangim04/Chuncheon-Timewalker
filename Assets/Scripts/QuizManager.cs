@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;   // ✅ TextMeshPro 사용을 위한 네임스페이스 추가
 
 public class QuizManager : MonoBehaviour
 {
@@ -11,13 +12,13 @@ public class QuizManager : MonoBehaviour
     public GameObject summaryPanel;
 
     [Header("Quiz UI")]
-    public Text quizBox;   // 문제 텍스트
-    public Text mark;      // 정답/오답 표시
+    public TextMeshProUGUI quizBox;   // 문제 텍스트
+    public TextMeshProUGUI mark;      // 정답/오답 표시
     public Button oButton;
     public Button xButton;
 
     [Header("Summary UI")]
-    public Text scoreText;
+    public TextMeshProUGUI scoreText;
     public Button retryButton;
 
     // 전체 20문제 (질문, 정답, 해설)

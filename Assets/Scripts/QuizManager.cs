@@ -134,8 +134,15 @@ public class QuizManager : MonoBehaviour
         xButton.interactable = true;
     }
 
-    void OnAnswer(bool choice)
+    public void OnAnswer(bool choice)
     {
+        // 🔹 퀴즈가 진행 중인지 체크 (안전장치)
+        if (quiz == null || quiz.Count == 0)
+            return; // 퀴즈가 아직 시작되지 않았으면 아무 동작 안 함
+
+        if (currentIndex >= quiz.Count)
+            return; // 이미 모든 문제를 다 푼 상태에서도 무시
+
         var q = quiz[currentIndex];
         bool isCorrect = (choice == q.answer);
 
@@ -154,11 +161,13 @@ public class QuizManager : MonoBehaviour
             mark.color = Color.red;
         }
 
+        // 🔹 버튼 중복 입력 방지
         oButton.interactable = false;
         xButton.interactable = false;
 
         Invoke(nameof(NextQuestion), 1.5f);
     }
+
 
     void NextQuestion()
     {

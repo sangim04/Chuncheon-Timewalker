@@ -99,10 +99,16 @@ public class ThoughtSpawner : MonoBehaviour
         float rad = Mathf.Deg2Rad * angleDeg;
 
         // 🎯 XR 카메라의 forward 그대로 사용
-        Vector3 forward = new Vector3(player.forward.x, 0, player.forward.z).normalized;
+       // Vector3 forward = new Vector3(player.forward.x, 0, player.forward.z).normalized; //기존
+        Vector3 forward = new Vector3(-player.forward.x, 0, -player.forward.z).normalized;
         Vector3 right = new Vector3(player.right.x, 0, player.right.z).normalized;
 
         Vector3 spawnDir = (forward * Mathf.Cos(rad)) + (right * Mathf.Sin(rad));
+
+        
+
+        
+        spawnDir.Normalize();
         spawnDir.Normalize();
 
         float radius = Random.Range(minRadius, maxRadius);
@@ -122,7 +128,7 @@ public class ThoughtSpawner : MonoBehaviour
         }
 
         // 🧩 프리팹 선택
-        bool isGood = Random.value > 0.4f;
+        bool isGood = Random.value > 0.35f;
         GameObject prefab = isGood ? goodThoughtPrefab : badThoughtPrefab;
 
         // ✅ 생성
@@ -147,4 +153,16 @@ public class ThoughtSpawner : MonoBehaviour
 
         return spawned;
     }
+
+    // 🧹 모든 잡념 강제 제거 (게임 종료 시)
+public void ClearAllThoughts()
+{
+    foreach (var t in new List<GameObject>(activeThoughts))
+    {
+        if (t != null)
+            Destroy(t);
+    }
+    activeThoughts.Clear();
+}
+
 }

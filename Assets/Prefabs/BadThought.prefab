@@ -408,13 +408,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isGoodThought: 0
   orbitSpeed: 20
-  orbitRadius: 0.5
+  orbitRadius: 0.55
   floatAmplitude: 0.1
   floatSpeed: 0.8
-  orbitTiltAngle: 20
   layerCount: 4
   layerSpacing: 0.2
   layerRandomOffset: 0.05
+  goodMessages: []
+  badMessages: []
 --- !u!65 &7105924389618674678
 BoxCollider:
   m_ObjectHideFlags: 0

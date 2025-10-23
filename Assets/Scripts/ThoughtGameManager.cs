@@ -151,18 +151,17 @@ void ShowSummary(bool success)
 
     if (success)
     {
-        scoreText.text = "성공 🎉";
-        scoreMsg.text = "당신의 마음이 맑고 평온해졌습니다.";
+        scoreText.text = "성공!";
+        scoreMsg.text = "잡념을 떨쳐내고 마음이 맑고 평온해졌습니다.";
     }
     else
     {
-        scoreText.text = "실패 😔";
+        scoreText.text = "실패..";
         scoreMsg.text = "잡념에 휩싸여 집중력을 잃었습니다.";
     }
 
     Debug.Log($"📊 Game Ended: {(success ? "Success" : "Fail")}, Final Gauge={gaugeValue}");
 }
-
 
 
     public bool IsGaugeFull() => gaugeValue >= 100f;

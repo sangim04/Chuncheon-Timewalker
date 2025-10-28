@@ -17,8 +17,13 @@ public class JulyeonManager : MonoBehaviour
 
     private bool isPuzzleSolved = false;
     
+    public AudioClip connectSound;
     public AudioClip correctSound;
     public AudioClip uncorrectSound;
+    
+    public GameObject connectEffect;
+    public GameObject correctEffect;
+    public GameObject uncorrectEffect;
     
     private AudioSource audioSource;
 
@@ -83,10 +88,30 @@ public class JulyeonManager : MonoBehaviour
         }
     }
 
+    // 소켓에 물건이 연결될 때 호출되며, 즉시 연결 피드백을 제공합니다. (수정됨)
     private void OnSocketSelectEntered(SelectEnterEventArgs args)
     {
+        UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor interactor = args.interactorObject as UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor;
+        
+        if (interactor != null)
+        {
+            // 연결 사운드 재생
+            if (audioSource != null && connectSound != null)
+            {
+                audioSource.PlayOneShot(connectSound);
+            }
+
+            // 연결 이펙트를 해당 소켓 위치에 생성
+            if (connectEffect != null)
+            {
+                Destroy(Instantiate(connectEffect, interactor.transform.position, Quaternion.identity), 1f);
+            }
+        }
+
+        // 3. 전체 정답 체크 로직 실행
         CheckAnswer();
     }
+
 
     public void CheckAnswer()
     {
@@ -99,7 +124,8 @@ public class JulyeonManager : MonoBehaviour
         // 모든 소켓이 채워졌는지 확인
         for (int i = 0; i < sockets.Length; i++)
         {
-            if (sockets[i].GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().interactablesSelected.Count == 0)
+            if (sockets[i].GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>().
+                    interactablesSelected.Count == 0)
             {
                 allSocketsFilled = false;
                 break; // 하나라도 비어 있으면 반복문 종료
@@ -126,12 +152,13 @@ public class JulyeonManager : MonoBehaviour
                 Debug.Log("정답입니다!");
                 isPuzzleSolved = true;
                 audioSource.PlayOneShot(correctSound);
-                // 다음 단계로 넘어가는 로직을 여기에 추가하세요.
+                Destroy(Instantiate(correctEffect, transform.position, Quaternion.identity), 3);
             }
             else
             {
                 Debug.Log("오답입니다. 다시 시도하세요.");
                 audioSource.PlayOneShot(uncorrectSound);
+                Destroy(Instantiate(uncorrectEffect, transform.position, Quaternion.identity), 3);
                 StartCoroutine(ResetPuzzleCoroutine());
             }
         }
@@ -140,7 +167,29 @@ public class JulyeonManager : MonoBehaviour
     // 물건을 소켓에서 분리하고 초기 위치로 부드럽게 이동시키는 코루틴
     IEnumerator ResetPuzzleCoroutine()
     {
-        // 1. 소켓의 콜라이더를 잠시 비활성화하여 다시 들어가는 것을 방지
+        // 1. 소켓들 오답 모션
+        float moveDistance = 0.05f;
+        foreach (var socket in sockets)
+        {
+            socket.transform.Translate(Vector3.left * moveDistance);
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (var socket in sockets)
+        {
+            socket.transform.Translate(Vector3.right * moveDistance);
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (var socket in sockets)
+        {
+            socket.transform.Translate(Vector3.left * moveDistance);
+        }
+        yield return new WaitForSeconds(0.1f);
+        foreach (var socket in sockets)
+        {
+            socket.transform.Translate(Vector3.right * moveDistance);
+        }
+        
+        // 2. 소켓의 콜라이더를 잠시 비활성화하여 다시 들어가는 것을 방지
         foreach (var socket in sockets)
         {
             Collider collider = socket.GetComponent<Collider>();
@@ -152,7 +201,7 @@ public class JulyeonManager : MonoBehaviour
         
         yield return new WaitForSeconds(0.3f);
         
-        // 2. 주련을 소켓에서 먼저 분리
+        // 3. 주련을 소켓에서 먼저 분리
         foreach (var socket in sockets)
         {
             UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor interactor = socket.GetComponent<UnityEngine.XR.Interaction.Toolkit.Interactors.XRSocketInteractor>();
@@ -162,7 +211,7 @@ public class JulyeonManager : MonoBehaviour
             }
         }
 
-        // 3. 주련들을 초기 위치로 선형 이동
+        // 4. 주련들을 초기 위치로 선형 이동
         float duration = 1.0f; // 이동에 걸리는 시간
         float elapsed = 0f;
 
@@ -183,7 +232,7 @@ public class JulyeonManager : MonoBehaviour
             yield return null;
         }
 
-        // 4. 마지막으로 위치와 회전 초기 상태로 복원
+        // 5. 마지막으로 위치와 회전 초기 상태로 복원
         for (int i = 0; i < itemsToReset.Length; i++)
         {
             if (itemsToReset[i] != null)
@@ -192,10 +241,8 @@ public class JulyeonManager : MonoBehaviour
                 itemsToReset[i].rotation = initialRotations[i];
             }
         }
-        
-        yield return new WaitForSeconds(0.3f);
 
-        // 5. 소켓들의 콜라이더 다시 활성화
+        // 6. 소켓들의 콜라이더 다시 활성화
         foreach (var socket in sockets)
         {
             Collider collider = socket.GetComponent<Collider>();

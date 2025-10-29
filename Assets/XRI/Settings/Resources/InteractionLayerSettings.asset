@@ -40,8 +40,8 @@ MonoBehaviour:
   - 
   - 
   - 
+  - HanoiSocket
   - 
-  - 
-  - 
-  - 
+  - HanoiMiddle
+  - HanoiSmall
   - Teleport

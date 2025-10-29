@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: d157fcfc73457ea44b9a125e5be375ca
+timeCreated: 1469681704
+licenseType: Store
+NativeFormatImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 68246
+  packageName: DL Fantasy RPG Effects
+  packageVersion: 1.0
+  assetPath: Assets/DL_Fantasy_RPG_Effects/prefab/explode_2.prefab
+  uploadId: 130654

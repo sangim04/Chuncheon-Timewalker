@@ -2209,6 +2209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin (XR Rig)
       objectReference: {fileID: 0}
+    - target: {fileID: 1717954561962503725, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1717954561962503726, guid: f6336ac4ac8b4d34bc5072418cdc62a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9180,6 +9184,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1234195741}
   m_CullTransparentMesh: 1
+--- !u!1001 &1301344669
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2920768778999829061, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5824011629201100396, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
+      propertyPath: m_Name
+      value: XR Origin Hands (XR Rig)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 3faec93943a21e945a719f4bfcdd9c73, type: 3}
 --- !u!1 &1301411851
 GameObject:
   m_ObjectHideFlags: 0
@@ -14131,6 +14192,7 @@ SceneRoots:
   m_Roots:
   - {fileID: 868387049}
   - {fileID: 382199951}
+  - {fileID: 1301344669}
   - {fileID: 1503338369}
   - {fileID: 7554995600609923761}
   - {fileID: 1802917081}

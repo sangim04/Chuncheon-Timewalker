@@ -67,8 +67,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uB9C8\uC74C\uC774 \uACBD\uAC74\uD574\uC9C4\uB2E4."
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 676c8c3d3f87c104bb3cfab7ba66a137, type: 2}
-  m_sharedMaterial: {fileID: -4710491268069989829, guid: 676c8c3d3f87c104bb3cfab7ba66a137, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5b18c4ce6c3b5354e86f53e90e787a5f, type: 2}
+  m_sharedMaterial: {fileID: 3952259063037834309, guid: 5b18c4ce6c3b5354e86f53e90e787a5f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -173,7 +173,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 80}
+  m_SizeDelta: {x: 400, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1742746459175500104
 CanvasRenderer:
@@ -414,6 +414,7 @@ MonoBehaviour:
   layerCount: 4
   layerSpacing: 0.2
   layerRandomOffset: 0.05
+  touchParticlePrefab: {fileID: 3253177598184207295, guid: 78a7949f3e254774dbc6017db1bc8065, type: 3}
   goodMessages: []
   badMessages: []
 --- !u!65 &4865537555523309087

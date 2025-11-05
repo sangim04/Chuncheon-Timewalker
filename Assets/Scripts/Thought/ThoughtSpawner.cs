@@ -17,7 +17,7 @@ public class ThoughtSpawner : MonoBehaviour
     public float minRadius = 0.5f;         // 최소 반경
     public float maxRadius = 0.9f;         // 최대 반경
     public float heightOffset = 0.2f;      // 기본 y 보정 (플레이어 눈 높이 기준)
-    public float spawnClearance = 0.25f;   // 중복 방지 거리
+    public float spawnClearance = 0.4f;   // 중복 방지 거리
     public bool useForwardArc = true;      // 전방 180도 제한
     [Range(10f, 180f)] public float halfArcDeg = 80f; // 시야각 (기본 160도)
 

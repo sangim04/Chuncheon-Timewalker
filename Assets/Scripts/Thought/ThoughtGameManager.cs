@@ -71,6 +71,8 @@ public class ThoughtGameManager : MonoBehaviour
             Vector3 forward = playerCamera != null ? playerCamera.forward : Camera.main.transform.forward;
             thoughtSpawner.BeginSpawn();
         }
+
+        UpdateGaugeColor();
     }
 
     // 📘 방법 보기
@@ -93,6 +95,19 @@ public class ThoughtGameManager : MonoBehaviour
         Debug.Log("🔁 다시 시작");
         summaryPanel.SetActive(false);
         OnStartClicked(); // 게임 재시작
+
+        UpdateGaugeColor();
+    }
+
+        void UpdateGaugeColor()
+    {
+        Image fillImage = gaugeBar.fillRect.GetComponent<Image>();
+        float t = gaugeBar.value;
+
+        if (t < 0.5f)
+            fillImage.color = Color.Lerp(Color.red, Color.yellow, t * 2f);
+        else
+            fillImage.color = Color.Lerp(Color.yellow, Color.green, (t - 0.5f) * 2f);
     }
 
     // ❌ 종료
@@ -114,6 +129,8 @@ public class ThoughtGameManager : MonoBehaviour
 
         gaugeValue = Mathf.Clamp(gaugeValue, 0f, 100f);
         gaugeBar.value = gaugeValue / 100f;
+        UpdateGaugeColor();
+
 
         // ✅ 게이지 상태 확인
         if (gaugeValue >= 100f)
@@ -152,7 +169,7 @@ void ShowSummary(bool success)
     if (success)
     {
         scoreText.text = "성공!";
-        scoreMsg.text = "잡념을 떨쳐내고 마음이 맑고 평온해졌습니다.";
+        scoreMsg.text = "잡념을 떨쳐내어 마음이 맑고 평온해졌습니다.";
     }
     else
     {

@@ -38,8 +38,8 @@ public class ThoughtBehavior : MonoBehaviour
             return;
         }
 
-        // 1) 버튼/TMP 텍스트 세팅
-        SetThoughtText();
+        // TMP 탐색을 한 프레임 늦게 실행
+        Invoke(nameof(SetThoughtText), 0.05f);
 
         // 2) 층 랜덤 선택
         int chosenLayer = UnityEngine.Random.Range(0, layerCount);

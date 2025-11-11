@@ -4,9 +4,18 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
+using TMPro;
 
 public class StageManager : MonoBehaviour
 {
+    [Header("UI")]
+    public TextMeshProUGUI logText;
+
+    [Header("Stage UIs")]
+    public GameObject stage1UI;
+    public GameObject stage2UI;
+    public GameObject stage3UI;
+
     [Header("Stage 1")]
     public List<XRSocketInteractor> stage1Sockets = new List<XRSocketInteractor>(4);
 
@@ -35,6 +44,8 @@ public class StageManager : MonoBehaviour
         if (stage1Sockets.Count != 4) Debug.LogWarning($"[SocketStageManager] Stage1 소켓 개수 {stage1Sockets.Count}개 (권장 4개)");
         if (stage2Sockets.Count != 8) Debug.LogWarning($"[SocketStageManager] Stage2 소켓 개수 {stage2Sockets.Count}개 (권장 8개)");
         if (stage3Sockets.Count != 8) Debug.LogWarning($"[SocketStageManager] Stage3 소켓 개수 {stage3Sockets.Count}개 (권장 8개)");
+
+        SetStageUI(0);
     }
 
     private void OnDestroy()
@@ -79,7 +90,15 @@ public class StageManager : MonoBehaviour
             _ => null
         };
     }
+
     private readonly Dictionary<XRGrabInteractable, InteractionLayerMask> savedMasks = new();
+
+    private void SetStageUI(int stageIndex)
+    {
+        if (stage1UI) stage1UI.SetActive(stageIndex == 0);
+        if (stage2UI) stage2UI.SetActive(stageIndex == 1);
+        if (stage3UI) stage3UI.SetActive(stageIndex == 2);
+    }
 
     // ==============================================================
     private InteractionLayerMask lockedMask;
@@ -170,6 +189,15 @@ public class StageManager : MonoBehaviour
         TryAdvanceStage();
     }
 
+    private void LogMessage(string message)
+    {
+        Debug.Log(message); // 개발 중에는 여전히 콘솔에도 표시
+        if (logText != null)
+        {
+            logText.text = message;
+        }
+    }
+
     private void OnSelectExited(XRSocketInteractor socket, SelectExitEventArgs args)
     {
         if (!IsSocketInCurrentStage(socket)) return;
@@ -183,29 +211,29 @@ public class StageManager : MonoBehaviour
         var curList = GetStageList(currentStage);
         if (curList == null || curList.Count == 0) return;
 
-        // 현재 단계의 모든 소켓이 정답 상태인지 확인
         bool allCorrect = curList.All(s => s && correctPlaced.TryGetValue(s, out var ok) && ok);
-
         if (!allCorrect) return;
 
         if (currentStage == 0)
         {
-            Debug.Log("4개에 올바르게 들어갔습니다. 다음 단계를 진행합니다.");
+            LogMessage("4개에 올바르게 들어갔습니다. 다음 단계를 진행합니다.");
             SetStageActive(0, false);
             currentStage = 1;
             SetStageActive(1, true);
+            SetStageUI(1);
         }
         else if (currentStage == 1)
         {
-            Debug.Log("8개에 올바르게 들어갔습니다. 다음 단계를 진행합니다.");
+            LogMessage("8개에 올바르게 들어갔습니다. 다음 단계를 진행합니다.");
             SetStageActive(1, false);
             currentStage = 2;
             SetStageActive(2, true);
+            SetStageUI(2);
         }
         else if (currentStage == 2)
         {
-            Debug.Log("잘했습니다!");
-            //여기서 후속 로직(연출, 씬 전환 등) 호출
+            LogMessage("잘했습니다!");
+            SetStageUI(-1);
         }
     }
 }

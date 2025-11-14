@@ -9,9 +9,9 @@ public class BellCollision : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         if (bell == null)
         {
+            Debug.Log(other.gameObject.name + " has entered");
             bell = Instantiate(bellAudio, transform.position, Quaternion.identity);
             Destroy(bell, 20);
         }

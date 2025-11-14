@@ -171,7 +171,6 @@ public class ThoughtBehavior : MonoBehaviour
         TextMeshProUGUI tmp = GetComponentInChildren<TextMeshProUGUI>(true);
         if (tmp == null)
         {
-            Debug.LogWarning($"⚠️ {name}: TextMeshProUGUI not found under Canvas/button/Text");
             return;
         }
 

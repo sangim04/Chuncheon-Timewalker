@@ -116,9 +116,9 @@ public class ThoughtSpawner : MonoBehaviour
             if (t == null) continue;
             if (Vector3.Distance(t.transform.position, spawnPos) < spawnClearance)
             {
-                if (logDebug)
-                    Debug.Log($"🚫 Spawn skipped — overlap with existing thought at {spawnPos}");
-                return null;
+                //if (logDebug)
+                    //Debug.Log($"🚫 Spawn skipped — overlap with existing thought at {spawnPos}");
+                //return null;
             }
         }
 
@@ -140,11 +140,11 @@ public class ThoughtSpawner : MonoBehaviour
                 activeThoughts.Remove(spawned);
         };
 
-        if (logDebug)
-        {
-            float distFromPlayer = Vector3.Distance(player.position, spawnPos);
-            Debug.Log($"🧠 Spawned {(isGood ? "Good" : "Bad")}Thought@{angleDeg:F0}° at {spawnPos} (dist {distFromPlayer:F2}m)");
-        }
+        //if (logDebug)
+        //{
+            //float distFromPlayer = Vector3.Distance(player.position, spawnPos);
+            //Debug.Log($"🧠 Spawned {(isGood ? "Good" : "Bad")}Thought@{angleDeg:F0}° at {spawnPos} (dist {distFromPlayer:F2}m)");
+        //}
 
         return spawned;
     }

@@ -60,7 +60,6 @@ public class ThoughtGameManager : MonoBehaviour
     // 🎮 게임 시작
     void OnStartClicked()
     {
-        Debug.Log("🎮 게임 시작!");
         mainPanel.SetActive(false);
         howPanel.SetActive(false);
         summaryPanel.SetActive(false);
@@ -97,7 +96,6 @@ public class ThoughtGameManager : MonoBehaviour
     // 🔁 다시하기
     void OnRetryClicked()
     {
-        Debug.Log("🔁 다시 시작");
         summaryPanel.SetActive(false);
         OnStartClicked(); // 게임 재시작
 
@@ -118,7 +116,6 @@ public class ThoughtGameManager : MonoBehaviour
     // ❌ 종료
     void OnQuitClicked()
     {
-        Debug.Log("👋 게임 종료");
         Application.Quit();
     }
 

@@ -2575,8 +2575,6 @@ MonoBehaviour:
   howtoPanel: {fileID: 132334622}
   quizBox: {fileID: 1208353821}
   mark: {fileID: 906324752}
-  oButton: {fileID: 0}
-  xButton: {fileID: 0}
   scoreText: {fileID: 1244734245}
   retryButton: {fileID: 1456806477}
   explanationButton: {fileID: 1670087548}
@@ -2934,7 +2932,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &884751910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6105,7 +6103,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1707748529
 Transform:
   m_ObjectHideFlags: 0
@@ -7653,8 +7651,8 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2018815301}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2}
-  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalScale: {x: 0.008, y: 0.008, z: 0.008}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 896453293}

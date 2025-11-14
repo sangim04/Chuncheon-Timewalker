@@ -20,8 +20,6 @@ public class QuizManager : MonoBehaviour
     [Header("Quiz UI")]
     public TextMeshProUGUI quizBox;   // 문제 텍스트
     public TextMeshProUGUI mark;      // 정답/오답 표시
-    public Button oButton;
-    public Button xButton;
 
     [Header("Summary UI")]
     public TextMeshProUGUI scoreText;
@@ -124,10 +122,6 @@ public class QuizManager : MonoBehaviour
 
         ShowQuestion();
 
-        oButton.onClick.RemoveAllListeners();
-        xButton.onClick.RemoveAllListeners();
-        oButton.onClick.AddListener(() => OnAnswer(true));
-        xButton.onClick.AddListener(() => OnAnswer(false));
     }
 
     void ShowQuestion()
@@ -135,8 +129,6 @@ public class QuizManager : MonoBehaviour
         var q = quiz[currentIndex];
         quizBox.text = $"Q{currentIndex + 1}. {q.question}";
         mark.text = "";
-        oButton.interactable = true;
-        xButton.interactable = true;
     }
 
     public void OnAnswer(bool choice)
@@ -169,10 +161,6 @@ public class QuizManager : MonoBehaviour
             mark.text = "오답입니다!";
             mark.color = Color.red;
         }
-
-        // 🔹 버튼 중복 입력 방지
-        oButton.interactable = false;
-        xButton.interactable = false;
 
         Invoke(nameof(NextQuestion), 1.5f);
     }

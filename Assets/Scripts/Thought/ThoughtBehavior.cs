@@ -32,6 +32,11 @@ public class ThoughtBehavior : MonoBehaviour
     private float baseY;
     private float angle;
 
+    [Header("Audio")]
+    public AudioClip goodSound;
+    public AudioClip badSound;
+
+
     void Start()
     {
         player = Camera.main ? Camera.main.transform : null;
@@ -116,6 +121,11 @@ public class ThoughtBehavior : MonoBehaviour
                     Quaternion.identity                // 기본 회전
                 );
             }
+            // 🔊 사운드 재생
+            if (isGoodThought && goodSound != null)
+                AudioSource.PlayClipAtPoint(goodSound, transform.position, 0.8f);
+            else if (!isGoodThought && badSound != null)
+                AudioSource.PlayClipAtPoint(badSound, transform.position, 0.8f);
             
             ThoughtGameManager.Instance.OnThoughtTouched(this);
             onDestroyed?.Invoke();

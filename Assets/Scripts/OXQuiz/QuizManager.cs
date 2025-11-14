@@ -6,6 +6,11 @@ using TMPro;
 
 public class QuizManager : MonoBehaviour
 {
+    [Header("Result Sounds")]
+    public AudioClip successSound;
+    public AudioClip failSound;
+    public AudioSource uiAudioSource;   // UI 버튼 사운드와 같은 AudioSource 사용 가능
+
     [Header("Panels")]
     public GameObject mainPanel;      // 메인 화면
     public GameObject quizPanel;      // 퀴즈 화면
@@ -151,12 +156,16 @@ public class QuizManager : MonoBehaviour
 
         if (isCorrect)
         {
+            if (uiAudioSource != null && successSound != null)
+            uiAudioSource.PlayOneShot(successSound, 0.9f);
             score++;
             mark.text = "정답입니다!";
             mark.color = Color.green;
         }
         else
         {
+            if (uiAudioSource != null && failSound != null)
+            uiAudioSource.PlayOneShot(failSound, 0.9f);
             mark.text = "오답입니다!";
             mark.color = Color.red;
         }

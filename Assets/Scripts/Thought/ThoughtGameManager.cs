@@ -4,6 +4,11 @@ using TMPro;
 
 public class ThoughtGameManager : MonoBehaviour
 {
+    [Header("Result Sounds")]
+    public AudioClip successSound;
+    public AudioClip failSound;
+    public AudioSource uiAudioSource;   // UI 버튼 사운드와 같은 AudioSource 사용 가능
+
     [Header("Camera & Spawner")]
     public Transform playerCamera;
     public ThoughtSpawner thoughtSpawner;
@@ -164,6 +169,15 @@ void ShowSummary(bool success)
 
         // ✅ activeThoughts 리스트 클리어 (스포너 내부 변수 접근 버전)
         thoughtSpawner.ClearAllThoughts();
+    }
+    
+    if (uiAudioSource != null)
+    {
+        if (success && successSound != null)
+            uiAudioSource.PlayOneShot(successSound, 0.9f);
+
+        else if (!success && failSound != null)
+            uiAudioSource.PlayOneShot(failSound, 0.9f);
     }
 
     if (success)

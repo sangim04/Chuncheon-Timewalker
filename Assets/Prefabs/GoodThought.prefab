@@ -417,6 +417,8 @@ MonoBehaviour:
   touchParticlePrefab: {fileID: 3253177598184207295, guid: 78a7949f3e254774dbc6017db1bc8065, type: 3}
   goodMessages: []
   badMessages: []
+  goodSound: {fileID: 8300000, guid: fbdb6adce78d51149a64843f0fce8cba, type: 3}
+  badSound: {fileID: 0}
 --- !u!65 &4865537555523309087
 BoxCollider:
   m_ObjectHideFlags: 0

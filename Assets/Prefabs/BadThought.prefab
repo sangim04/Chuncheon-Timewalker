@@ -196,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.7019608}
+  m_Color: {r: 0.8018868, g: 0.8018868, b: 0.8018868, a: 0.7019608}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -417,6 +417,8 @@ MonoBehaviour:
   touchParticlePrefab: {fileID: 3253177598184207295, guid: 8796c8d71b96fc040943409867623d65, type: 3}
   goodMessages: []
   badMessages: []
+  goodSound: {fileID: 0}
+  badSound: {fileID: 8300000, guid: 3136423621295a74796352de8ac5c9be, type: 3}
 --- !u!65 &7105924389618674678
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -110,6 +110,17 @@
                 },
                 {
                     "name": "",
+                    "id": "eb6fde4e-4025-40db-9dec-67816470992d",
+                    "path": "<XRController>{RightHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Talk",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "eca909b4-db20-4f74-86ec-48d30a34f031",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -214,6 +225,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard & Mouse",
+                    "action": "ToggleSettings",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a3c15933-b52e-4001-933b-94a6dcfdd101",
+                    "path": "<XRController>{LeftHand}/primaryButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "ToggleSettings",
                     "isComposite": false,
                     "isPartOfComposite": false

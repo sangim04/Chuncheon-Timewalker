@@ -15,6 +15,7 @@ public class StageManager : MonoBehaviour
     public GameObject stage1UI;
     public GameObject stage2UI;
     public GameObject stage3UI;
+    public GameObject EndUI;
 
     [Header("Stage 1")]
     public List<XRSocketInteractor> stage1Sockets = new List<XRSocketInteractor>(4);
@@ -118,7 +119,7 @@ public class StageManager : MonoBehaviour
         {
             if (!socket) continue;
 
-            // 소켓은 항상 켜둔다 (이제 비활성화하지 않음)
+            // 소켓은 항상 켜둔다
             socket.enabled = true;
             socket.gameObject.SetActive(true);
 
@@ -189,15 +190,6 @@ public class StageManager : MonoBehaviour
         TryAdvanceStage();
     }
 
-    private void LogMessage(string message)
-    {
-        Debug.Log(message); // 개발 중에는 여전히 콘솔에도 표시
-        if (logText != null)
-        {
-            logText.text = message;
-        }
-    }
-
     private void OnSelectExited(XRSocketInteractor socket, SelectExitEventArgs args)
     {
         if (!IsSocketInCurrentStage(socket)) return;
@@ -216,7 +208,6 @@ public class StageManager : MonoBehaviour
 
         if (currentStage == 0)
         {
-            LogMessage("4개에 올바르게 들어갔습니다. 다음 단계를 진행합니다.");
             SetStageActive(0, false);
             currentStage = 1;
             SetStageActive(1, true);
@@ -224,7 +215,6 @@ public class StageManager : MonoBehaviour
         }
         else if (currentStage == 1)
         {
-            LogMessage("8개에 올바르게 들어갔습니다. 다음 단계를 진행합니다.");
             SetStageActive(1, false);
             currentStage = 2;
             SetStageActive(2, true);
@@ -232,8 +222,9 @@ public class StageManager : MonoBehaviour
         }
         else if (currentStage == 2)
         {
-            LogMessage("잘했습니다!");
-            SetStageUI(-1);
+            SetStageUI(-1);             
+            if (EndUI)
+                EndUI.SetActive(true); 
         }
     }
 }

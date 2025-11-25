@@ -1,5 +1,8 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
+
 
 [AddComponentMenu("VR/VR Button Goto (SmoothDamp)")]
 public class RoadView : MonoBehaviour
@@ -19,6 +22,12 @@ public class RoadView : MonoBehaviour
     public bool freezeY = false; // true면 목적지의 y로 고정(바닥 높이 유지 등)
 
     Coroutine _moveCo;
+
+    //===
+    public Volume volume;     // Global Volume 할당 (인스펙터에서 Drag)
+    public float startWeight = 0f; // 이동 시작 시 weight
+    public float endWeight = 1f; // 이동 끝에서 weight
+    //===
 
     /// <summary>
     /// 대상 지점으로 가우시안 속도 프로파일로 이동
@@ -45,6 +54,10 @@ public class RoadView : MonoBehaviour
         float t = 0f;
         float s = Mathf.Max(0.01f, sigma);
 
+        //===
+        float initWeight = volume != null ? volume.weight : 0f;
+        //===
+
         // 가우시안 CDF
         System.Func<float, double> CDF = (float u) =>
         {
@@ -67,11 +80,25 @@ public class RoadView : MonoBehaviour
 
             Vector3 next = Vector3.LerpUnclamped(start, target, blend);
             rigRoot.position = next;
+
+            //===
+            // Volume 효과 적용 (부드러운 Weight Lerp)
+            if (volume != null)
+            {
+                volume.weight = Mathf.Lerp(initWeight, endWeight, u);
+            }
+            //===
             yield return null;
         }
 
         // 루프를 시간으로 끊었으니 마지막 한 번 더 보정 (거의 0일 것임)
         rigRoot.position = target;
+
+        //===
+        if (volume != null)
+            volume.weight = endWeight;
+        //===
+
         _moveCo = null;
     }
 

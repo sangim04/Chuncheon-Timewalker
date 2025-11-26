@@ -3841,7 +3841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c988213298c8946a9414d763059c0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSpawnPoint: {fileID: 0}
+  mapSpawnPoint: {fileID: 1744490796}
   sceneName: Map
 --- !u!1 &1161419563
 GameObject:
@@ -5784,6 +5784,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741823532}
   m_CullTransparentMesh: 1
+--- !u!1 &1744490795
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1744490796}
+  m_Layer: 0
+  m_Name: mapSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1744490796
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744490795}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.52, y: -3.4, z: -33.020004}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1744629568
 GameObject:
   m_ObjectHideFlags: 0
@@ -7329,13 +7360,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133148064}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: -0.5721459, z: 0, w: 0.82015187}
+  m_LocalRotation: {x: -0, y: -0.7989337, z: -0, w: 0.6014192}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: -69.8, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -106.057, z: 0}
 --- !u!114 &192829669383101049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7777,3 +7808,4 @@ SceneRoots:
   - {fileID: 2133148068}
   - {fileID: 1028008892}
   - {fileID: 1727176892}
+  - {fileID: 1744490796}

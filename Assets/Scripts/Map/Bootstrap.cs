@@ -10,6 +10,6 @@ public class Bootstrap : MonoBehaviour
         if (SpawnManager.Instance == null)
             Instantiate(spawnManagerPrefab);
 
-        SceneManager.LoadScene("Map");
+        //SceneManager.LoadScene("Map");
     }
 }
